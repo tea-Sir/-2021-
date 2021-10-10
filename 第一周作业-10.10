@@ -1,0 +1,55 @@
+
+66. 加一
+给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。
+
+最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。
+
+你可以假设除了整数 0 之外，这个整数不会以零开头。
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+        for(int i=digits.length-1;i>=0;i--){
+            if(digits[i]!=9){
+                digits[i]=digits[i]+1;
+                return digits;
+            }else{
+                digits[i]=0;   
+            }
+        }
+        digits=new int[digits.length+1];
+        digits[0]=1;
+        return digits;
+
+    }
+}
+
+
+21. 合并两个有序链表
+将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1==null){
+            return l2;
+        }else if(l2==null){
+            return l1;
+        }else if(l1.val<=l2.val){
+            l1.next=mergeTwoLists(l1.next,l2);
+            return l1;
+        }else{
+            l2.next=mergeTwoLists(l1,l2.next);
+            return l2;
+        }
+
+    }
+}
