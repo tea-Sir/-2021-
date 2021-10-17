@@ -1,0 +1,31 @@
+811. 子域名访问计数
+
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+        Map<String,Integer> map=new HashMap<>();
+        for(int i=0;i<cpdomains.length;i++){
+            String[] sltArr=cpdomains[i].split("\\s+");
+            int count=Integer.valueOf(sltArr[0]);
+            String []sltArr2=sltArr[1].split("\\.");
+            String cur="";
+            int len=sltArr2.length;
+            for(int j=len-1;j>=0;j--){
+               if(j==len-1){
+                   cur=sltArr2[j]+cur;
+                
+               }else{
+                   cur=sltArr2[j]+"."+cur;
+               }
+               map.put(cur,map.getOrDefault(cur,0)+count);
+            }
+
+        }
+        List<String> list=new ArrayList<>();
+        for(Map.Entry<String,Integer> entry:map.entrySet()){
+            list.add(entry.getValue()+" "+entry.getKey());
+
+        }
+        return list;
+
+    }
+}
