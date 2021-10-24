@@ -1,1 +1,36 @@
 
+47. 全排列 II
+
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> res=new ArrayList<>();
+        Deque<Integer> path=new LinkedList<>();
+        boolean[]flag=new boolean[nums.length];
+        Arrays.sort(nums);
+        dfs(flag,res,nums,path);
+        return res;
+
+    }
+    public void dfs(boolean[]flag,List<List<Integer>> res,int[]nums,Deque<Integer> path){
+        if(path.size()==nums.length){
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        for(int i=0;i<nums.length;i++){
+            //剪枝保证同一个位置不会存放同一个元素两次
+            if(i>0&&nums[i]==nums[i-1]&&flag[i-1]){
+                continue;
+            }
+            if(flag[i]==false){
+                 flag[i]=true;
+            path.push(nums[i]);
+            dfs(flag,res,nums,path);
+            path.pop();
+            flag[i]=false;
+
+            }
+           
+        }
+
+    }
+}
