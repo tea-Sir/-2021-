@@ -28,3 +28,33 @@ class Solution {
 
     }
 }
+
+875. 爱吃香蕉的珂珂
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+    //根据题目定义右边界，防止溢出
+        int left=1,right=1000000000;
+        int len=piles.length;
+        while(left<right){
+            int mid=(left+right)/2;
+            if(check(mid,piles,h)){
+                right=mid;
+            }else{
+                left=mid+1;
+            }
+        }
+        return right;
+
+    }
+    public boolean check(int mid,int []piles,int h){
+        int count=0;
+        for(int i=0;i<piles.length;i++){
+            //piles[i]-1防止除尽的情况
+            count+=(piles[i]-1)/mid+1;
+        }
+        return count<=h;
+    }
+}
+
+时间复杂度：二分遍历复杂度为O(logN),遍历香蕉堆复杂度为O(M),整体复杂度为O(MlogN);
+空间复杂度：没有使用额外空间，O(1).
