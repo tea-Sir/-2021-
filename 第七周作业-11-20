@@ -1,0 +1,40 @@
+279. 完全平方数
+class Solution {
+    public int numSquares(int n) {
+        int []dp=new int[n+1];
+        dp[0]=0;
+        for(int i=1;i<=n;i++){
+            dp[i]=Integer.MAX_VALUE;
+            for(int j=1;j*j<=i;j++){
+                dp[i]=Math.min(dp[i],dp[i-j*j]+1);
+
+            }
+        }
+        return dp[n];
+
+    }
+}
+
+时间复杂度：O（n根号n）,n为正整数，根号n为状态转移的次数。
+空间复杂度：O(n)，建立数组花费的额外空间。
+
+55. 跳跃游戏
+
+class Solution {
+    public boolean canJump(int[] nums) {
+        int n=nums.length,right=0;
+for(int i=0;i<n;i++){
+if(i<=right){
+    right=Math.max(right, i+nums[i]);
+}
+if(right>=n-1){
+    return true;
+}
+}
+return false;
+    }
+}
+
+时间复杂度：O(n),只遍历了一次数组。
+空间复杂度O(1),没有使用额外的空间。
+
