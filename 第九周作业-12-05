@@ -1,0 +1,32 @@
+709. 转换成小写字母
+class Solution {
+     public String toLowerCase(String str) {
+        if (str == null || str.length() == 0) {
+            return str;
+        }
+        char[] ch = str.toCharArray();
+        for (int i = 0; i < str.length(); i++) {
+            if (ch[i] >= 'A' && ch[i] <= 'Z') {
+                ch[i] += 32;
+            }
+        }
+        return String.valueOf(ch);
+    }
+
+}
+
+58. 最后一个单词的长度
+class Solution {
+    public int lengthOfLastWord(String s) {
+      int index = s.length() - 1;
+        while (s.charAt(index) == ' ') {
+            index--;
+        }
+        int wordLength = 0;
+        while (index >= 0 && s.charAt(index) != ' ') {
+            wordLength++;
+            index--;
+        }
+        return wordLength;
+    }
+    }
